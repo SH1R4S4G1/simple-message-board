@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1行掲示板</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>1行掲示板</h1>
+    
+    <form action="/post" method="POST" class="post-form">
+      <input type="text" name="content" placeholder="何か書いてみよう..." maxlength="140" required>
+      <button type="submit">投稿</button>
+    </form>
+    
+    <div class="messages">
+      <% if (messages.length > 0) { %>
+        <% messages.forEach(message => { %>
+          <div class="message">
+            <div class="message-content"><%= message.content %></div>
+            <div class="message-time"><%= new Date(message.created_at).toLocaleString('ja-JP') %></div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <p class="no-messages">メッセージはまだありません。最初の投稿をしてみましょう！</p>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>
